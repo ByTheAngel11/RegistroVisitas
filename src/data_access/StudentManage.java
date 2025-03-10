@@ -1,3 +1,4 @@
+// src/data_access/StudentManage.java
 package data_access;
 
 import logic.Student;
@@ -34,6 +35,22 @@ public class StudentManage {
             System.out.println("Estudiante agregado exitosamente!");
         } catch (SQLException e) {
             System.out.println("Error al agregar estudiante a la base de datos");
+            e.printStackTrace();
+        }
+    }
+
+    public void editStudentByEmail(Student student) {
+        String sql = "UPDATE Estudiante SET nombres = ?, apellidos = ?, matricula = ? WHERE correo = ?";
+        try (Connection connection = this.connection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, student.getNames());
+            statement.setString(2, student.getSurnames());
+            statement.setString(3, student.getEnrollment());
+            statement.setString(4, student.getEmail());
+            statement.executeUpdate();
+            System.out.println("Estudiante editado exitosamente!");
+        } catch (SQLException e) {
+            System.out.println("Error al editar estudiante en la base de datos");
             e.printStackTrace();
         }
     }
