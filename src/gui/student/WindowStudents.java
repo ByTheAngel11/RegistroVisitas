@@ -1,12 +1,9 @@
-package gui;
+package gui.student;
 
-import data_access.StudentManage;
-import logic.ButtonManageStudents;
-import logic.Student;
+import gui.student.utilities.ButtonManageStudents;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.List;
 
 public class WindowStudents extends JFrame {
     private JTable tableStudents;

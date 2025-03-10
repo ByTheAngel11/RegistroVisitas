@@ -1,6 +1,9 @@
-package logic;
+package gui.menu;
 
-import gui.*;
+import gui.external.WindowExternals;
+import gui.external_visit.WindowExternalVisits;
+import gui.student.WindowStudents;
+import gui.visit.WindowVisits;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

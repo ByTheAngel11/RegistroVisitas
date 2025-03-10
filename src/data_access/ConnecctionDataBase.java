@@ -35,11 +35,6 @@ public class ConnecctionDataBase {
             System.out.println("Conectado con exito!");
         }
     }
-
-    public static void main(String args[]) {
-        ConnecctionDataBase obj = new ConnecctionDataBase();
-        obj.getConnection();
-    }
 }
 
 

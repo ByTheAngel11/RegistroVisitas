@@ -1,4 +1,4 @@
-package gui;
+package gui.visit;
 
 import data_access.VisitManage;
 import logic.Visit;

@@ -1,8 +1,8 @@
 // src/logic/ButtonManageEditStudent.java
-package logic;
+package gui.student.utilities;
 
-import gui.WindowEditStudent;
-import gui.WindowStudents;
+import gui.student.WindowEditStudent;
+import gui.student.WindowStudents;
 import data_access.StudentManage;
 import logic.Student;
 

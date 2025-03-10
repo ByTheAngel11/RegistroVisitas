@@ -1,12 +1,12 @@
-// src/gui/WindowAddStudent.java
-package gui;
+// src/gui/WindowEditStudent.java
+package gui.student;
 
-import logic.ButtonManageAddStudent;
-import logic.ButtonManageStudents;
+import gui.student.utilities.ButtonManageEditStudent;
+import logic.Student;
 
 import javax.swing.*;
 
-public class WindowAddStudent extends JFrame {
+public class WindowEditStudent extends JFrame {
     private JLabel labelEmail;
     private JLabel labelNames;
     private JLabel labelSurnames;
@@ -17,9 +17,13 @@ public class WindowAddStudent extends JFrame {
     private JTextField textFieldEnrollment;
     private JButton buttonSave;
     private JButton buttonCancel;
+    private WindowStudents windowStudents;
+    private Student student;
 
-    public WindowAddStudent(WindowStudents windowStudents, ButtonManageStudents buttonManageStudents) {
-        setTitle("Registrar Estudiante");
+    public WindowEditStudent(Student student, WindowStudents windowStudents) {
+        this.student = student;
+        this.windowStudents = windowStudents;
+        setTitle("Editar Estudiante");
         this.setBounds(10, 10, 700, 500);
         this.setLocationRelativeTo(null);
         this.setLayout(null);
@@ -30,6 +34,7 @@ public class WindowAddStudent extends JFrame {
 
         textFieldEmail = new JTextField();
         textFieldEmail.setBounds(150, 50, 200, 30);
+        textFieldEmail.setEditable(false);
         this.add(textFieldEmail);
 
         labelNames = new JLabel("Nombres");
@@ -64,7 +69,7 @@ public class WindowAddStudent extends JFrame {
         buttonCancel.setBounds(260, 250, 100, 30);
         this.add(buttonCancel);
 
-        setActionListener(windowStudents, buttonManageStudents);
+        setActionListener();
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
@@ -94,9 +99,9 @@ public class WindowAddStudent extends JFrame {
         return buttonCancel;
     }
 
-    private void setActionListener(WindowStudents windowStudents, ButtonManageStudents buttonManageStudents) {
-        ButtonManageAddStudent buttonManageAddStudent = new ButtonManageAddStudent(this, buttonManageStudents);
-        buttonSave.addActionListener(buttonManageAddStudent);
-        buttonCancel.addActionListener(buttonManageAddStudent);
+    private void setActionListener() {
+        ButtonManageEditStudent buttonManageEditStudent = new ButtonManageEditStudent(this, windowStudents, student);
+        buttonSave.addActionListener(buttonManageEditStudent);
+        buttonCancel.addActionListener(buttonManageEditStudent);
     }
 }

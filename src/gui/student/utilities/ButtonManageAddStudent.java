@@ -1,9 +1,9 @@
 // src/logic/ButtonManageAddStudent.java
-package logic;
+package gui.student.utilities;
 
-import gui.WindowAddStudent;
+import gui.student.WindowAddStudent;
 import data_access.StudentManage;
-import gui.WindowStudents;
+import logic.Student;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

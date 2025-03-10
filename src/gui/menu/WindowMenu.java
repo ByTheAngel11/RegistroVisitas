@@ -1,6 +1,4 @@
-package gui;
-
-import logic.ButtonManageMenu;
+package gui.menu;
 
 import javax.swing.*;
 

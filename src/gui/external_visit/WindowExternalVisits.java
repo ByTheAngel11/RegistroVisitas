@@ -1,4 +1,4 @@
-package gui;
+package gui.external_visit;
 
 import data_access.ExternalVisitManage;
 import logic.ExternalVisit;

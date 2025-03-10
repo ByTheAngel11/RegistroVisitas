@@ -1,6 +1,6 @@
 package logic;
 
-import gui.WindowMenu;
+import gui.menu.WindowMenu;
 
 public class Main {
     public static void main(String[] args) {
