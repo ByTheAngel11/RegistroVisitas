@@ -14,7 +14,7 @@ public class WindowMenu extends JFrame {
     public WindowMenu(){
         setTitle("Menu");
         this.setBounds(10, 10, 700, 500);
-        this.setLayout(null); // Use null layout to use setBounds
+        this.setLayout(null);
 
         labelTitle = new JLabel("Menu Registro de visitas");
         labelTitle.setBounds(280, 20, 200, 40);

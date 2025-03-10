@@ -1,45 +1,45 @@
 package gui;
 
-import logic.ButtonManageMenu;
+import data_access.ExternalManage;
+import logic.External;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
 
 public class WindowExternals extends JFrame {
-    private JButton buttonConsultStudents;
-    private JButton buttonConsultExternals;
-    private JButton buttonConsultVisits;
-    private JButton buttonConsultExternalVisits;
-    private JLabel labelTitle;
+    private JTable tableExternals;
+    private JScrollPane scrollPane;
 
-    public WindowExternals(){
-        setTitle("Menu");
+    public WindowExternals() {
+        setTitle("Lista de Externos");
         this.setBounds(10, 10, 700, 500);
-        this.setLayout(null); // Use null layout to use setBounds
+        this.setLayout(null);
 
-        labelTitle = new JLabel("Menu Registro de visitas");
-        labelTitle.setBounds(280, 20, 200, 40);
+        DefaultTableModel model = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        model.addColumn("Email");
+        model.addColumn("Names");
+        model.addColumn("Surnames");
+        model.addColumn("Official Identification");
 
-        buttonConsultStudents = new JButton("Consult students");
-        buttonConsultStudents.setBounds(250, 100, 200, 40);
+        ExternalManage externalManage = new ExternalManage();
+        List<External> externals = externalManage.listAllExternals();
+        for (External external : externals) {
+            model.addRow(new Object[]{external.getEmail(), external.getNames(), external.getSurnames(), external.getOfficialIdentification()});
+        }
 
-        buttonConsultExternals = new JButton("Consult externals");
-        buttonConsultExternals.setBounds(250, 160, 200, 40);
+        tableExternals = new JTable(model);
+        scrollPane = new JScrollPane(tableExternals);
+        scrollPane.setBounds(50, 50, 600, 400);
 
-        buttonConsultVisits = new JButton("Consult visits");
-        buttonConsultVisits.setBounds(250, 220, 200, 40);
-
-        buttonConsultExternalVisits = new JButton("Consult external visits");
-        buttonConsultExternalVisits.setBounds(250, 280, 200, 40);
-
-        this.add(labelTitle);
-        this.add(buttonConsultStudents);
-        this.add(buttonConsultExternals);
-        this.add(buttonConsultVisits);
-        this.add(buttonConsultExternalVisits);
+        this.add(scrollPane);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-
     }
-
 }

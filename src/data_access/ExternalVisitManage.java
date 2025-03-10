@@ -1,6 +1,6 @@
 package data_access;
 
-import logic.Visit;
+import logic.ExternalVisit;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,15 +23,15 @@ public class ExternalVisitManage {
         this.connection = new ConnecctionDataBase();
     }
 
-    public void addVisit(Visit visit){
+    public void addVisit(ExternalVisit externalVisit){
         String sql = "INSERT INTO visitaexternos (numerovisita, asuntovisita, fechaentrada, fechasalida, correo) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = this.connection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, 0);
-            statement.setString(2, visit.getVisitSubject());
-            statement.setTimestamp(3, visit.getEntryDate());
-            statement.setTimestamp(4, visit.getExitDate());
-            statement.setString(5, visit.getEmail());
+            statement.setString(2, externalVisit.getVisitSubject());
+            statement.setTimestamp(3, externalVisit.getEntryDate());
+            statement.setTimestamp(4, externalVisit.getExitDate());
+            statement.setString(5, externalVisit.getEmail());
             statement.executeUpdate();
             System.out.println("External visit added successfully!");
         } catch (SQLException e) {
@@ -40,7 +40,7 @@ public class ExternalVisitManage {
         }
     }
 
-    public void editVisitByVisitNumber(Visit visit) {
+    public void editVisitByVisitNumber(ExternalVisit visit) {
         String sql = "UPDATE visitaexternos SET asuntovisita = ?, fechaentrada = ?, fechasalida = ? WHERE numerovisita = ?";
         try (Connection connection = this.connection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -56,8 +56,8 @@ public class ExternalVisitManage {
         }
     }
 
-    public List<Visit> listAllVisits() {
-        List<Visit> visits = new ArrayList<>();
+    public List<ExternalVisit> listAllVisits() {
+        List<ExternalVisit> visits = new ArrayList<>();
         String sql = "SELECT * FROM visitaexternos";
         try (Connection connection = this.connection.getConnection();
              Statement statement = connection.createStatement();
@@ -68,7 +68,7 @@ public class ExternalVisitManage {
                 Timestamp entryDate = resultSet.getTimestamp("fechaentrada");
                 Timestamp exitDate = resultSet.getTimestamp("fechasalida");
                 String email = resultSet.getString("correo");
-                Visit visit = new Visit(visitNumber, visitSubject, entryDate, exitDate, email);
+                ExternalVisit visit = new ExternalVisit(visitNumber, visitSubject, entryDate, exitDate, email);
                 visits.add(visit);
             }
             System.out.println("External visits selected successfully!");
