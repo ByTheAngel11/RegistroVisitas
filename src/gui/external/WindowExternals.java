@@ -1,5 +1,7 @@
 package gui.external;
 
+import gui.external.utilities.ButtonManageExternal;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 

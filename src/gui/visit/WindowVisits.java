@@ -1,20 +1,39 @@
 package gui.visit;
 
-import data_access.VisitManage;
-import logic.Visit;
+import gui.visit.utilities.ButtonManageVisits;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.List;
 
 public class WindowVisits extends JFrame {
     private JTable tableVisits;
     private JScrollPane scrollPane;
+    private JTextField searchField;
+    private JButton searchButton;
+    private JButton addButton;
+    private JButton editButton;
 
     public WindowVisits() {
         setTitle("Lista de Visitas");
         this.setBounds(10, 10, 700, 500);
+        this.setLocationRelativeTo(null);
         this.setLayout(null);
+
+        searchField = new JTextField();
+        searchField.setBounds(50, 10, 200, 30);
+        this.add(searchField);
+
+        searchButton = new JButton("Buscar");
+        searchButton.setBounds(260, 10, 100, 30);
+        this.add(searchButton);
+
+        addButton = new JButton("Registrar");
+        addButton.setBounds(370, 10, 100, 30);
+        this.add(addButton);
+
+        editButton = new JButton("Modificar");
+        editButton.setBounds(480, 10, 100, 30);
+        this.add(editButton);
 
         DefaultTableModel model = new DefaultTableModel() {
             @Override
@@ -28,19 +47,42 @@ public class WindowVisits extends JFrame {
         model.addColumn("Exit Date");
         model.addColumn("Email");
 
-        VisitManage visitManage = new VisitManage();
-        List<Visit> visits = visitManage.listAllVisits();
-        for (Visit visit : visits) {
-            model.addRow(new Object[]{visit.getVisitNumber(), visit.getVisitSubject(), visit.getEntryDate(), visit.getExitDate(), visit.getEmail()});
-        }
-
         tableVisits = new JTable(model);
         scrollPane = new JScrollPane(tableVisits);
         scrollPane.setBounds(50, 50, 600, 400);
-
         this.add(scrollPane);
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
+
+        setActionListener();
+    }
+
+    public JButton getSearchButton() {
+        return searchButton;
+    }
+
+    public JButton getAddButton() {
+        return addButton;
+    }
+
+    public JButton getEditButton() {
+        return editButton;
+    }
+
+    public JTextField getSearchField() {
+        return searchField;
+    }
+
+    public JTable getTableVisits() {
+        return tableVisits;
+    }
+
+    public void setActionListener() {
+        ButtonManageVisits buttonManageVisits = new ButtonManageVisits(this);
+        searchButton.addActionListener(buttonManageVisits);
+        addButton.addActionListener(buttonManageVisits);
+        editButton.addActionListener(buttonManageVisits);
     }
 }

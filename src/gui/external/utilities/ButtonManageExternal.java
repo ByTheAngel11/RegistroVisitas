@@ -1,7 +1,10 @@
 // src/logic/ButtonManageExternal.java
-package gui.external;
+package gui.external.utilities;
 
 import data_access.ExternalManage;
+import gui.external.WindowAddExternal;
+import gui.external.WindowEditExternal;
+import gui.external.WindowExternals;
 import logic.External;
 
 import javax.swing.*;

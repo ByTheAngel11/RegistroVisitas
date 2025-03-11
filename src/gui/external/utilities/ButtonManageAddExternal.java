@@ -1,6 +1,8 @@
-package gui.external;
+package gui.external.utilities;
 
 import data_access.ExternalManage;
+import gui.external.WindowAddExternal;
+import gui.external.WindowExternals;
 import logic.External;
 
 import javax.swing.table.DefaultTableModel;

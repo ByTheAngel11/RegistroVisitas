@@ -1,4 +1,3 @@
-// src/gui/WindowAddStudent.java
 package gui.student;
 
 import gui.student.utilities.ButtonManageAddStudent;

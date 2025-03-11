@@ -1,4 +1,3 @@
-// src/logic/ButtonManageAddStudent.java
 package gui.student.utilities;
 
 import gui.student.WindowAddStudent;

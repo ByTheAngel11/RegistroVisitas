@@ -1,6 +1,8 @@
 // src/gui/WindowAddExternal.java
 package gui.external;
 
+import gui.external.utilities.ButtonManageAddExternal;
+
 import javax.swing.*;
 
 public class WindowAddExternal extends JFrame {
