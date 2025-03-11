@@ -40,24 +40,21 @@ public class ButtonManageAddVisit implements ActionListener {
     private void addNewVisit() throws EmptyField, InvalidDateFormat {
         String visitSubject = windowAddVisit.getTextFieldVisitSubject().getText();
         String entryDateStr = windowAddVisit.getTextFieldEntryDate().getText();
-        String exitDateStr = windowAddVisit.getTextFieldExitDate().getText();
         String email = (String) windowAddVisit.getComboBoxEmail().getSelectedItem();
 
-        if (visitSubject.isEmpty() || entryDateStr.isEmpty() || exitDateStr.isEmpty() || email == null || email.isEmpty()) {
+        if (visitSubject.isEmpty() || entryDateStr.isEmpty() || email.isEmpty()) {
             throw new EmptyField("Todos los campos deben estar llenos");
         }
 
         Timestamp entryDate;
-        Timestamp exitDate;
         try {
             entryDate = InputValidator.convertStringToTimestamp(entryDateStr);
-            exitDate = InputValidator.convertStringToTimestamp(exitDateStr);
         } catch (RuntimeException ex) {
             throw new InvalidDateFormat("Formato de fecha incorrecto. Use yyyy/MM/dd HH:mm:ss", ex);
         }
 
-        Visit visit = new Visit(0, visitSubject, entryDate, exitDate, email);
-        visitManage.addVisit(visit);
+        Visit visit = new Visit(visitSubject, entryDate, email);
+        visitManage.addVisitWithDefaultExitDate(visit);
         System.out.println("Visita registrada exitosamente en la base de datos.");
         windowAddVisit.dispose();
         buttonManageVisits.reloadTable();

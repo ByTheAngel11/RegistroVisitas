@@ -4,6 +4,7 @@ import gui.visit.utilities.ButtonManageAddVisit;
 import gui.visit.utilities.ButtonManageVisits;
 import data_access.StudentManage;
 import logic.Student;
+import gui.utilities.PlaceholderTextField;
 
 import javax.swing.*;
 import java.util.List;
@@ -11,11 +12,9 @@ import java.util.List;
 public class WindowAddVisit extends JFrame {
     private JLabel labelVisitSubject;
     private JLabel labelEntryDate;
-    private JLabel labelExitDate;
     private JLabel labelEmail;
     private JTextField textFieldVisitSubject;
-    private JTextField textFieldEntryDate;
-    private JTextField textFieldExitDate;
+    private PlaceholderTextField textFieldEntryDate;
     private JComboBox<String> comboBoxEmail;
     private JButton buttonSave;
     private JButton buttonCancel;
@@ -38,32 +37,24 @@ public class WindowAddVisit extends JFrame {
         labelEntryDate.setBounds(50, 100, 150, 30);
         this.add(labelEntryDate);
 
-        textFieldEntryDate = new JTextField();
+        textFieldEntryDate = new PlaceholderTextField("yyyy-MM-dd HH:mm:ss");
         textFieldEntryDate.setBounds(200, 100, 200, 30);
         this.add(textFieldEntryDate);
 
-        labelExitDate = new JLabel("Fecha de Salida");
-        labelExitDate.setBounds(50, 150, 150, 30);
-        this.add(labelExitDate);
-
-        textFieldExitDate = new JTextField();
-        textFieldExitDate.setBounds(200, 150, 200, 30);
-        this.add(textFieldExitDate);
-
         labelEmail = new JLabel("Correo");
-        labelEmail.setBounds(50, 200, 150, 30);
+        labelEmail.setBounds(50, 150, 150, 30);
         this.add(labelEmail);
 
         comboBoxEmail = new JComboBox<>();
-        comboBoxEmail.setBounds(200, 200, 200, 30);
+        comboBoxEmail.setBounds(200, 150, 200, 30);
         this.add(comboBoxEmail);
 
         buttonSave = new JButton("Guardar");
-        buttonSave.setBounds(150, 250, 100, 30);
+        buttonSave.setBounds(150, 200, 100, 30);
         this.add(buttonSave);
 
         buttonCancel = new JButton("Cancelar");
-        buttonCancel.setBounds(260, 250, 100, 30);
+        buttonCancel.setBounds(260, 200, 100, 30);
         this.add(buttonCancel);
 
         populateEmailComboBox();
@@ -88,10 +79,6 @@ public class WindowAddVisit extends JFrame {
 
     public JTextField getTextFieldEntryDate() {
         return textFieldEntryDate;
-    }
-
-    public JTextField getTextFieldExitDate() {
-        return textFieldExitDate;
     }
 
     public JComboBox<String> getComboBoxEmail() {

@@ -55,6 +55,23 @@ public class VisitManage {
         }
     }
 
+    public void addVisitWithDefaultExitDate(Visit visit){
+        String sql = "INSERT INTO Visita (numerovisita, asuntovisita, fechaentrada, fechasalida, correo) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = this.connection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)){
+            statement.setInt(1, 0);
+            statement.setString(2, visit.getVisitSubject());
+            statement.setTimestamp(3, visit.getEntryDate());
+            statement.setTimestamp(4, null); // Default exit date set to null
+            statement.setString(5, visit.getEmail());
+            statement.executeUpdate();
+            System.out.println("Visit added successfully with default exit date!");
+        } catch (SQLException e) {
+            System.out.println("Error adding visit to the database");
+            e.printStackTrace();
+        }
+    }
+
     public List<Visit> listAllVisits() {
         List<Visit> visits = new ArrayList<>();
         String sql = "SELECT * FROM Visita";

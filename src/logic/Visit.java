@@ -33,6 +33,15 @@ public class Visit {
         this.email = "";
     }
 
+    // New constructor
+    public Visit(String visitSubject, Timestamp entryDate, String email) {
+        this.visitNumber = 0;
+        this.visitSubject = visitSubject;
+        this.entryDate = entryDate;
+        this.exitDate = null; // Default exit date set to null
+        this.email = email;
+    }
+
     public int getVisitNumber() {
         return visitNumber;
     }
