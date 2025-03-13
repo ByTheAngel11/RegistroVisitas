@@ -4,9 +4,9 @@ import logic.Visit;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +70,26 @@ public class VisitManage {
             System.out.println("Error adding visit to the database");
             e.printStackTrace();
         }
+    }
+
+    public Visit getVisitByNumeroVisita(int visitNumber) {
+        String sql = "SELECT * FROM Visita WHERE numerovisita = ?";
+        try (Connection connection = this.connection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, visitNumber);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String visitSubject = resultSet.getString("asuntovisita");
+                Timestamp entryDate = resultSet.getTimestamp("fechaentrada");
+                Timestamp exitDate = resultSet.getTimestamp("fechasalida");
+                String email = resultSet.getString("correo");
+                return new Visit(visitNumber, visitSubject, entryDate, exitDate, email);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving visit from the database");
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public List<Visit> listAllVisits() {

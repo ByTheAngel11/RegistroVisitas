@@ -1,16 +1,18 @@
 package gui.visit.utilities;
 
-import Exceptions.EmptyField;
 import Exceptions.InvalidDateFormat;
-import gui.utilities.InputValidator;
+import data_access.StudentManage;
 import gui.visit.WindowAddVisit;
 import data_access.VisitManage;
+import logic.Student;
 import logic.Visit;
+import Exceptions.EmptyField;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class ButtonManageAddVisit implements ActionListener {
     private WindowAddVisit windowAddVisit;
@@ -21,6 +23,7 @@ public class ButtonManageAddVisit implements ActionListener {
         this.windowAddVisit = windowAddVisit;
         this.visitManage = new VisitManage();
         this.buttonManageVisits = buttonManageVisits;
+        populateEmailComboBox(); // Llamar a la función aquí
     }
 
     @Override
@@ -48,7 +51,7 @@ public class ButtonManageAddVisit implements ActionListener {
 
         Timestamp entryDate;
         try {
-            entryDate = InputValidator.convertStringToTimestamp(entryDateStr);
+            entryDate = Timestamp.valueOf(entryDateStr);
         } catch (RuntimeException ex) {
             throw new InvalidDateFormat("Formato de fecha incorrecto. Use yyyy/MM/dd HH:mm:ss", ex);
         }
@@ -58,5 +61,13 @@ public class ButtonManageAddVisit implements ActionListener {
         System.out.println("Visita registrada exitosamente en la base de datos.");
         windowAddVisit.dispose();
         buttonManageVisits.reloadTable();
+    }
+
+    private void populateEmailComboBox() {
+        StudentManage studentManage = new StudentManage();
+        List<Student> students = studentManage.listAllStudents();
+        for (Student student : students) {
+            windowAddVisit.getComboBoxEmail().addItem(student.getEmail());
+        }
     }
 }

@@ -1,6 +1,7 @@
 package gui.visit.utilities;
 
 import gui.visit.WindowAddVisit;
+import gui.visit.WindowEditVisit;
 import gui.visit.WindowVisits;
 import data_access.VisitManage;
 import logic.Visit;
@@ -30,7 +31,15 @@ public class ButtonManageVisits implements ActionListener {
             new WindowAddVisit(windowVisits, this);
         }
         if (e.getSource() == windowVisits.getEditButton()) {
-            // Implement edit functionality
+            int selectedRow = windowVisits.getTableVisits().getSelectedRow();
+            if (selectedRow != -1) {
+                int visitNumber = (int) windowVisits.getTableVisits().getValueAt(selectedRow, 0);
+                VisitManage visitManage = new VisitManage();
+                Visit visit = visitManage.getVisitByNumeroVisita(visitNumber);
+                new WindowEditVisit(visit, windowVisits);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione una visita para editar.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         if (e.getSource() == windowVisits.getSearchButton()) {
             searchVisitByEmail();
@@ -49,7 +58,8 @@ public class ButtonManageVisits implements ActionListener {
         VisitManage visitManage = new VisitManage();
         List<Visit> visits = visitManage.listAllVisits();
         for (Visit visit : visits) {
-            model.addRow(new Object[]{visit.getVisitNumber(), visit.getVisitSubject(), visit.getEntryDate(), visit.getExitDate(), visit.getEmail()});
+            model.addRow(new Object[]{visit.getVisitNumber(), visit.getVisitSubject(),
+                    visit.getEntryDate(), visit.getExitDate(), visit.getEmail()});
         }
     }
 }

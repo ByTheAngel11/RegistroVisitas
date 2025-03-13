@@ -2,12 +2,9 @@ package gui.visit;
 
 import gui.visit.utilities.ButtonManageAddVisit;
 import gui.visit.utilities.ButtonManageVisits;
-import data_access.StudentManage;
-import logic.Student;
 import gui.utilities.PlaceholderTextField;
 
 import javax.swing.*;
-import java.util.List;
 
 public class WindowAddVisit extends JFrame {
     private JLabel labelVisitSubject;
@@ -57,20 +54,10 @@ public class WindowAddVisit extends JFrame {
         buttonCancel.setBounds(260, 200, 100, 30);
         this.add(buttonCancel);
 
-        populateEmailComboBox();
-
         setActionListener(windowVisits, buttonManageVisits);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
-    }
-
-    private void populateEmailComboBox() {
-        StudentManage studentManage = new StudentManage();
-        List<Student> students = studentManage.listAllStudents();
-        for (Student student : students) {
-            comboBoxEmail.addItem(student.getEmail());
-        }
     }
 
     public JTextField getTextFieldVisitSubject() {

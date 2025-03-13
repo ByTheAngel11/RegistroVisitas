@@ -17,12 +17,28 @@ public class ExternalVisit {
         this.email = email;
     }
 
+    public ExternalVisit(String visitSubject, Timestamp entryDate, Timestamp exitDate, String email) {
+        this.visitNumber = 0;
+        this.visitSubject = visitSubject;
+        this.entryDate = entryDate;
+        this.exitDate = exitDate;
+        this.email = email;
+    }
+
     public ExternalVisit() {
         this.visitNumber = 0;
         this.visitSubject = "";
         this.entryDate = new Timestamp(System.currentTimeMillis());
         this.exitDate = new Timestamp(System.currentTimeMillis());
         this.email = "";
+    }
+
+    public ExternalVisit(String visitSubject, Timestamp entryDate, String email) {
+        this.visitNumber = 0;
+        this.visitSubject = visitSubject;
+        this.entryDate = entryDate;
+        this.exitDate = null;
+        this.email = email;
     }
 
     public int getVisitNumber() {

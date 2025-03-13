@@ -23,7 +23,7 @@ public class ExternalVisitManage {
         this.connection = new ConnecctionDataBase();
     }
 
-    public void addVisit(ExternalVisit externalVisit){
+    public void addExternalVisit(ExternalVisit externalVisit){
         String sql = "INSERT INTO visitaexternos (numerovisita, asuntovisita, fechaentrada, fechasalida, correo) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = this.connection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)){

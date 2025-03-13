@@ -33,7 +33,6 @@ public class Visit {
         this.email = "";
     }
 
-    // New constructor
     public Visit(String visitSubject, Timestamp entryDate, String email) {
         this.visitNumber = 0;
         this.visitSubject = visitSubject;
