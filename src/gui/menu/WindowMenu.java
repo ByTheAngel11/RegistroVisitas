@@ -1,4 +1,7 @@
+// src/gui/menu/WindowMenu.java
 package gui.menu;
+
+import gui.external_visit.WindowExternalVisits;
 
 import javax.swing.*;
 

@@ -1,10 +1,6 @@
-package gui.external_visit.utilities;
+package gui.external_visit;
 
 import data_access.ExternalVisitManage;
-import gui.external_visit.WindowExternalVisits;
-import gui.external_visit.WindowAddExternalVisit;
-import gui.external_visit.WindowEditExternalVisit;
-import data_access.ExternalManage;
 import logic.ExternalVisit;
 
 import javax.swing.*;
@@ -20,33 +16,41 @@ public class ButtonManageExternalVisits implements ActionListener {
 
     public ButtonManageExternalVisits(WindowExternalVisits windowExternalVisits) {
         this.windowExternalVisits = windowExternalVisits;
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = (DefaultTableModel) windowExternalVisits.getTableExternalVisits().getModel();
         this.sorter = new TableRowSorter<>(model);
         windowExternalVisits.getTableExternalVisits().setRowSorter(sorter);
         reloadTable();
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == windowExternalVisits.getAddButton()) {
             new WindowAddExternalVisit(windowExternalVisits, this);
         }
         if (e.getSource() == windowExternalVisits.getEditButton()) {
-            //TODO
+            int selectedRow = windowExternalVisits.getTableExternalVisits().getSelectedRow();
+            if (selectedRow != -1) {
+                int visitNumber = (int) windowExternalVisits.getTableExternalVisits().getValueAt(selectedRow, 0);
+                ExternalVisitManage externalVisitManage = new ExternalVisitManage();
+                ExternalVisit externalVisit = externalVisitManage.getVisitByVisitNumber(visitNumber);
+                new WindowEditExternalVisit(externalVisit, windowExternalVisits);
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione una visita para editar.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         if (e.getSource() == windowExternalVisits.getSearchButton()) {
             searchVisitByEmail();
         }
-
     }
 
     private void searchVisitByEmail() {
-        String email = windowExternalVisits.getSearchTextField().getText();
+        String email = windowExternalVisits.getSearchField().getText();
         sorter.setRowFilter(RowFilter.regexFilter(email, 4));
     }
 
     public void reloadTable() {
         DefaultTableModel model = (DefaultTableModel) windowExternalVisits.getTableExternalVisits().getModel();
-        model.setRowCount(0);
+        model.setRowCount(0); // Clear existing data
 
         ExternalVisitManage externalVisitManage = new ExternalVisitManage();
         List<ExternalVisit> externalVisits = externalVisitManage.listAllVisits();
@@ -55,5 +59,4 @@ public class ButtonManageExternalVisits implements ActionListener {
                     externalVisit.getEntryDate(), externalVisit.getExitDate(), externalVisit.getEmail()});
         }
     }
-
 }

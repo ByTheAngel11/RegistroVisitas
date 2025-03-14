@@ -1,16 +1,11 @@
+// src/data_access/ExternalVisitManage.java
 package data_access;
 
 import logic.ExternalVisit;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import java.sql.*;
 
 public class ExternalVisitManage {
     private ConnecctionDataBase connection;
@@ -77,5 +72,26 @@ public class ExternalVisitManage {
             e.printStackTrace();
         }
         return visits;
+    }
+
+    public ExternalVisit getVisitByVisitNumber(int visitNumber) {
+        String sql = "SELECT * FROM visitaexternos WHERE numerovisita = ?";
+        try (Connection connection = this.connection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, visitNumber);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String visitSubject = resultSet.getString("asuntovisita");
+                    Timestamp entryDate = resultSet.getTimestamp("fechaentrada");
+                    Timestamp exitDate = resultSet.getTimestamp("fechasalida");
+                    String email = resultSet.getString("correo");
+                    return new ExternalVisit(visitNumber, visitSubject, entryDate, exitDate, email);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving external visit from the database");
+            e.printStackTrace();
+        }
+        return null;
     }
 }

@@ -1,8 +1,6 @@
-package gui.external_visit.utilities;
+package gui.external_visit;
 
 import data_access.ExternalVisitManage;
-import gui.external_visit.WindowEditExternalVisit;
-import gui.external_visit.WindowExternalVisits;
 import logic.ExternalVisit;
 
 import java.awt.event.ActionEvent;
@@ -12,7 +10,7 @@ import java.sql.Timestamp;
 public class ButtonManageEditExternalVisit implements ActionListener {
 
     private WindowEditExternalVisit windowEditExternalVisit;
-    private ExternalVisitManage  externalVisitManage;
+    private ExternalVisitManage externalVisitManage;
     private ExternalVisit externalVisit;
     private WindowExternalVisits windowExternalVisits;
 
@@ -26,7 +24,7 @@ public class ButtonManageEditExternalVisit implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == windowEditExternalVisit.getButtonSave()) {
-            //saveExternalVisitChanges();
+            saveExternalVisitChanges();
         }
         if (e.getSource() == windowEditExternalVisit.getButtonCancel()) {
             windowEditExternalVisit.dispose();
@@ -35,9 +33,9 @@ public class ButtonManageEditExternalVisit implements ActionListener {
 
     private void saveExternalVisitChanges() {
         externalVisit.setVisitSubject(windowEditExternalVisit.getTextFieldVisitSubject().getText());
-        externalVisit.setVisitSubject(windowEditExternalVisit.getTextFieldVisitSubject().getText());
+        externalVisit.setEntryDate(Timestamp.valueOf(windowEditExternalVisit.getTextFieldEntryDate().getText()));
         String exitDateStr = windowEditExternalVisit.getTextFieldExitDate().getText();
-        externalVisit.setExitDate(exitDateStr.isEmpty() ? null : new Timestamp(Long.parseLong(exitDateStr)));
+        externalVisit.setExitDate(exitDateStr.isEmpty() ? null : Timestamp.valueOf(exitDateStr));
         externalVisit.setEmail(windowEditExternalVisit.getTextFieldEmail().getText());
 
         externalVisitManage.editVisitByVisitNumber(externalVisit);

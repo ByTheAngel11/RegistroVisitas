@@ -1,102 +1,73 @@
 package gui.external_visit;
 
-import data_access.ExternalVisitManage;
-import gui.external_visit.utilities.ButtonManageExternalVisits;
-import logic.ExternalVisit;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.List;
 
 public class WindowExternalVisits extends JFrame {
     private JTable tableExternalVisits;
     private JButton addButton;
-    private JButton searchButton;
     private JButton editButton;
-    private JTextField searchTextField;
+    private JButton searchButton;
+    private JTextField searchField;
     private ButtonManageExternalVisits buttonManageExternalVisits;
 
     public WindowExternalVisits() {
-        setTitle("Lista de Visitas Externas");
-        this.setBounds(10, 10, 700, 500);
+        setTitle("Visitas Externas");
+        this.setBounds(10, 10, 800, 600);
+        this.setLocationRelativeTo(null);
         this.setLayout(null);
 
-        DefaultTableModel model = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-        model.addColumn("Visit Number");
-        model.addColumn("Visit Subject");
-        model.addColumn("Entry Date");
-        model.addColumn("Exit Date");
-        model.addColumn("Email");
+        addButton = new JButton("Agregar");
+        addButton.setBounds(30, 10, 100, 30);
+        this.add(addButton);
 
-        ExternalVisitManage externalVisitManage = new ExternalVisitManage();
-        List<ExternalVisit> externalVisits = externalVisitManage.listAllVisits();
-        for (ExternalVisit visit : externalVisits) {
-            model.addRow(new Object[]{visit.getVisitNumber(), visit.getVisitSubject(), visit.getEntryDate(), visit.getExitDate(), visit.getEmail()});
-        }
+        editButton = new JButton("Editar");
+        editButton.setBounds(140, 10, 100, 30);
+        this.add(editButton);
 
-        tableExternalVisits = new JTable(model);
+        searchField = new JTextField();
+        searchField.setBounds(250, 10, 150, 30);
+        this.add(searchField);
+
+        searchButton = new JButton("Buscar");
+        searchButton.setBounds(410, 10, 100, 30);
+        this.add(searchButton);
+
+        tableExternalVisits = new JTable(new DefaultTableModel(new Object[]{"Número", "Asunto", "Fecha Entrada", "Fecha Salida", "Correo"}, 0));
         JScrollPane scrollPane = new JScrollPane(tableExternalVisits);
-        scrollPane.setBounds(50, 50, 600, 400);
-
+        scrollPane.setBounds(30, 50, 700, 500);
         this.add(scrollPane);
 
-        ButtonManageExternalVisits buttonManageExternalVisits = new ButtonManageExternalVisits(this);
+        buttonManageExternalVisits = new ButtonManageExternalVisits(this);
         addButton.addActionListener(buttonManageExternalVisits);
-        searchButton.addActionListener(buttonManageExternalVisits);
         editButton.addActionListener(buttonManageExternalVisits);
+        searchButton.addActionListener(buttonManageExternalVisits);
 
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-
     }
 
     public JTable getTableExternalVisits() {
         return tableExternalVisits;
     }
 
-    public void setTableExternalVisits(JTable tableExternalVisits) {
-        this.tableExternalVisits = tableExternalVisits;
-    }
-
     public JButton getAddButton() {
         return addButton;
-    }
-
-    public void setAddButton(JButton addButton) {
-        this.addButton = addButton;
-    }
-
-    public JButton getSearchButton() {
-        return searchButton;
-    }
-
-    public void setSearchButton(JButton searchButton) {
-        this.searchButton = searchButton;
     }
 
     public JButton getEditButton() {
         return editButton;
     }
 
-    public void setEditButton(JButton editButton) {
-        this.editButton = editButton;
+    public JButton getSearchButton() {
+        return searchButton;
     }
 
-    public JTextField getSearchTextField() {
-        return searchTextField;
-    }
-
-    public void setSearchTextField(JTextField searchTextField) {
-        this.searchTextField = searchTextField;
+    public JTextField getSearchField() {
+        return searchField;
     }
 
     public ButtonManageExternalVisits getButtonManageExternalVisits() {
         return buttonManageExternalVisits;
     }
-
 }
