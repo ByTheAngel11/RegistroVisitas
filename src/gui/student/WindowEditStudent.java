@@ -1,4 +1,3 @@
-// src/gui/WindowEditStudent.java
 package gui.student;
 
 import gui.student.utilities.ButtonManageEditStudent;

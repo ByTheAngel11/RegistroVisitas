@@ -1,5 +1,6 @@
 package gui.external_visit;
 
+import gui.external_visit.utilities.ButtonManageEditExternalVisit;
 import logic.ExternalVisit;
 
 import javax.swing.*;

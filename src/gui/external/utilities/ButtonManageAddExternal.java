@@ -46,7 +46,7 @@ public class ButtonManageAddExternal implements ActionListener {
 
     private void reloadTable() {
         DefaultTableModel model = (DefaultTableModel) windowExternals.getTableExternals().getModel();
-        model.setRowCount(0); // Clear existing data
+        model.setRowCount(0);
 
         List<External> externals = externalManage.listAllExternals();
         for (External external : externals) {

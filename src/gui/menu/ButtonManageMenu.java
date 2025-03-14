@@ -1,4 +1,3 @@
-// src/gui/menu/ButtonManageMenu.java
 package gui.menu;
 
 import gui.external_visit.WindowExternalVisits;

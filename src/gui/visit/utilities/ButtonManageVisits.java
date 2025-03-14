@@ -53,7 +53,7 @@ public class ButtonManageVisits implements ActionListener {
 
     public void reloadTable() {
         DefaultTableModel model = (DefaultTableModel) windowVisits.getTableVisits().getModel();
-        model.setRowCount(0); // Clear existing data
+        model.setRowCount(0);
 
         VisitManage visitManage = new VisitManage();
         List<Visit> visits = visitManage.listAllVisits();

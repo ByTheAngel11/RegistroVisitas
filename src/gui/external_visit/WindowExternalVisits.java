@@ -1,5 +1,7 @@
 package gui.external_visit;
 
+import gui.external_visit.utilities.ButtonManageExternalVisits;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 

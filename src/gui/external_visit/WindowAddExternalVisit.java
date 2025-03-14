@@ -1,5 +1,7 @@
 package gui.external_visit;
 
+import gui.external_visit.utilities.ButtonManageAddExternalVisit;
+import gui.external_visit.utilities.ButtonManageExternalVisits;
 import gui.utilities.PlaceholderTextField;
 
 import javax.swing.*;

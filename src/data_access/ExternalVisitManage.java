@@ -1,4 +1,3 @@
-// src/data_access/ExternalVisitManage.java
 package data_access;
 
 import logic.ExternalVisit;

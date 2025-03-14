@@ -1,6 +1,9 @@
-package gui.external_visit;
+package gui.external_visit.utilities;
 
 import data_access.ExternalVisitManage;
+import gui.external_visit.WindowAddExternalVisit;
+import gui.external_visit.WindowEditExternalVisit;
+import gui.external_visit.WindowExternalVisits;
 import logic.ExternalVisit;
 
 import javax.swing.*;

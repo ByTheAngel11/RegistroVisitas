@@ -68,7 +68,7 @@ public class ButtonManageStudents implements ActionListener {
 
     public void reloadTable() {
         DefaultTableModel model = (DefaultTableModel) windowStudents.getTableStudents().getModel();
-        model.setRowCount(0); // Clear existing data
+        model.setRowCount(0);
 
         StudentManage studentManage = new StudentManage();
         List<Student> students = studentManage.listAllStudents();

@@ -23,7 +23,7 @@ public class ButtonManageAddVisit implements ActionListener {
         this.windowAddVisit = windowAddVisit;
         this.visitManage = new VisitManage();
         this.buttonManageVisits = buttonManageVisits;
-        populateEmailComboBox(); // Llamar a la función aquí
+        populateEmailComboBox();
     }
 
     @Override

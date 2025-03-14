@@ -1,7 +1,8 @@
-package gui.external_visit;
+package gui.external_visit.utilities;
 
 import Exceptions.InvalidDateFormat;
 import data_access.ExternalVisitManage;
+import gui.external_visit.WindowAddExternalVisit;
 import logic.ExternalVisit;
 import Exceptions.EmptyField;
 
