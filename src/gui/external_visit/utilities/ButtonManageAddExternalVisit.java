@@ -1,15 +1,16 @@
 package gui.external_visit.utilities;
 
-import Exceptions.InvalidDateFormat;
 import data_access.ExternalVisitManage;
 import gui.external_visit.WindowAddExternalVisit;
 import logic.ExternalVisit;
 import Exceptions.EmptyField;
+import Exceptions.InvalidDateFormat;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class ButtonManageAddExternalVisit implements ActionListener {
     private WindowAddExternalVisit windowAddExternalVisit;
@@ -20,6 +21,7 @@ public class ButtonManageAddExternalVisit implements ActionListener {
         this.windowAddExternalVisit = windowAddExternalVisit;
         this.externalVisitManage = new ExternalVisitManage();
         this.buttonManageExternalVisits = buttonManageExternalVisits;
+        loadEmails();
     }
 
     @Override
@@ -57,5 +59,12 @@ public class ButtonManageAddExternalVisit implements ActionListener {
         System.out.println("Visita externa registrada exitosamente en la base de datos.");
         windowAddExternalVisit.dispose();
         buttonManageExternalVisits.reloadTable();
+    }
+
+    private void loadEmails() {
+        List<ExternalVisit> externalVisits = externalVisitManage.listAllVisits();
+        for (ExternalVisit visit : externalVisits) {
+            windowAddExternalVisit.getComboBoxEmail().addItem(visit.getEmail());
+        }
     }
 }

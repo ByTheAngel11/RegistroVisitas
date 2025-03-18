@@ -12,7 +12,6 @@ public class ConnecctionDataBase {
 
     public static Connection getConnection() {
         Connection connection = createConnection();
-        printMessaggeConnection(connection);
         return connection;
     }
 
@@ -28,12 +27,6 @@ public class ConnecctionDataBase {
     private static void manageException(SQLException e){
         System.out.println("Error al conectar con la base de datos");
         e.printStackTrace();
-    }
-
-    private static void printMessaggeConnection(Connection connection) {
-        if (connection != null) {
-            System.out.println("Conectado con exito!");
-        }
     }
 }
 

@@ -31,9 +31,7 @@ public class ExternalManage {
             statement.setString(3, external.getSurnames());
             statement.setString(4, external.getOfficialIdentification());
             statement.executeUpdate();
-            System.out.println("Externo agregado exitosamente!");
         } catch (SQLException e) {
-            System.out.println("Error al agregar externo a la base de datos");
             e.printStackTrace();
         }
     }
@@ -47,9 +45,7 @@ public class ExternalManage {
             statement.setString(3, external.getOfficialIdentification());
             statement.setString(4, external.getEmail());
             statement.executeUpdate();
-            System.out.println("Externo editado exitosamente!");
         } catch (SQLException e) {
-            System.out.println("Error al editar externo en la base de datos");
             e.printStackTrace();
         }
     }
@@ -68,9 +64,7 @@ public class ExternalManage {
                 External external = new External(email, names, surname, officialIdentification);
                 externals.add(external);
             }
-            System.out.println("Externos seleccionados exitosamente!");
         } catch (SQLException e) {
-            System.out.println("Error al seleccionar externos de la base de datos");
             e.printStackTrace();
         }
         return externals;

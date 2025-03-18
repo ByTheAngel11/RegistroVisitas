@@ -25,14 +25,6 @@ public class ExternalVisit {
         this.email = email;
     }
 
-    public ExternalVisit() {
-        this.visitNumber = 0;
-        this.visitSubject = "";
-        this.entryDate = new Timestamp(System.currentTimeMillis());
-        this.exitDate = new Timestamp(System.currentTimeMillis());
-        this.email = "";
-    }
-
     public ExternalVisit(String visitSubject, Timestamp entryDate, String email) {
         this.visitNumber = 0;
         this.visitSubject = visitSubject;

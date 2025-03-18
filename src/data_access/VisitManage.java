@@ -32,9 +32,7 @@ public class VisitManage {
             statement.setTimestamp(4, visit.getExitDate());
             statement.setString(5, visit.getEmail());
             statement.executeUpdate();
-            System.out.println("Visit added successfully!");
         } catch (SQLException e) {
-            System.out.println("Error adding visit to the database");
             e.printStackTrace();
         }
     }
@@ -48,9 +46,7 @@ public class VisitManage {
             statement.setTimestamp(3, visit.getExitDate());
             statement.setInt(4, visit.getVisitNumber());
             statement.executeUpdate();
-            System.out.println("Visit edited successfully!");
         } catch (SQLException e) {
-            System.out.println("Error editing visit in the database");
             e.printStackTrace();
         }
     }
@@ -65,9 +61,7 @@ public class VisitManage {
             statement.setTimestamp(4, null); // Default exit date set to null
             statement.setString(5, visit.getEmail());
             statement.executeUpdate();
-            System.out.println("Visit added successfully with default exit date!");
         } catch (SQLException e) {
-            System.out.println("Error adding visit to the database");
             e.printStackTrace();
         }
     }
@@ -86,7 +80,6 @@ public class VisitManage {
                 return new Visit(visitNumber, visitSubject, entryDate, exitDate, email);
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving visit from the database");
             e.printStackTrace();
         }
         return null;
@@ -107,9 +100,7 @@ public class VisitManage {
                 Visit visit = new Visit(visitNumber, visitSubject, entryDate, exitDate, email);
                 visits.add(visit);
             }
-            System.out.println("Visits selected successfully!");
         } catch (SQLException e) {
-            System.out.println("Error selecting visits from the database");
             e.printStackTrace();
         }
         return visits;

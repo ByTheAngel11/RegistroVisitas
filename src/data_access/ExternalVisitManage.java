@@ -27,9 +27,7 @@ public class ExternalVisitManage {
             statement.setTimestamp(4, externalVisit.getExitDate());
             statement.setString(5, externalVisit.getEmail());
             statement.executeUpdate();
-            System.out.println("External visit added successfully!");
         } catch (SQLException e) {
-            System.out.println("Error adding external visit to the database");
             e.printStackTrace();
         }
     }
@@ -43,9 +41,7 @@ public class ExternalVisitManage {
             statement.setTimestamp(3, visit.getExitDate());
             statement.setInt(4, visit.getVisitNumber());
             statement.executeUpdate();
-            System.out.println("External visit edited successfully!");
         } catch (SQLException e) {
-            System.out.println("Error editing external visit in the database");
             e.printStackTrace();
         }
     }
@@ -65,9 +61,7 @@ public class ExternalVisitManage {
                 ExternalVisit visit = new ExternalVisit(visitNumber, visitSubject, entryDate, exitDate, email);
                 visits.add(visit);
             }
-            System.out.println("External visits selected successfully!");
         } catch (SQLException e) {
-            System.out.println("Error selecting external visits from the database");
             e.printStackTrace();
         }
         return visits;
@@ -88,7 +82,6 @@ public class ExternalVisitManage {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error retrieving external visit from the database");
             e.printStackTrace();
         }
         return null;
